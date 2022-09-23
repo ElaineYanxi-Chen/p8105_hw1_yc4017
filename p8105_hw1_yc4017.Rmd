@@ -1,0 +1,23 @@
+---
+title: "p8105_hw1_yc4017"
+author: "Elaine Yanxi Chen"
+date: 2022-09-24
+output: 
+  github_document
+---
+
+First, load the package we need for this assignment.
+
+```{r}
+library(tidyverse)
+```
+
+# Problem 1
+
+First, we load the `penguins` dataset:
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+
