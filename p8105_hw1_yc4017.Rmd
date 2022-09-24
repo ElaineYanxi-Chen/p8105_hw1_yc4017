@@ -6,7 +6,7 @@ output:
   github_document
 ---
 
-First, we load the package needed for this assignment.
+First, we load the package necessary for this assignment.
 
 ```{r load_package, message = FALSE}
 library(tidyverse)
@@ -58,3 +58,25 @@ hw_df =
   )
 ```
 
+Next, we try to take the mean of each variable in the dataframe.
+
+```{r calculate_mean}
+mean(pull(hw_df, var_numeric))
+mean(pull(hw_df, var_logic))
+mean(pull(hw_df, var_char))
+mean(pull(hw_df, var_factor))
+```
+
+In this case, the calculation for the mean of numeric and logical variables worked. The attempt to take the mean for character and factor variables did not work. The argument is not numeric or logical, hence R is returning NA.
+
+Now, we try to convert logical, character, and factor variables to numeric using the `as.numeric` function.
+
+```{r convert_var, results = "hide", warning = FALSE}
+as.numeric(pull(hw_df, var_logic))
+as.numeric(pull(hw_df, var_char))
+as.numeric(pull(hw_df, var_factor))
+```
+
+The `as.numeric` function converted the logical variables to either 0 or 1, in this case, FALSE = 0 and TRUE = 1. The function failed to convert character variables to numeric type and R gives a warning saying that NAs introduced by coercion. The function assigned levels 1, 2, and 3 to the factor variable so that easy = 1, medium = 3, and hard = 2. 
+
+This explains the results we obtained when trying to take the mean earlier. The logical variable was converted to either 0 or 1 and a mean could be calculated. However, the character variable could not be converted to the numeric type and hence no mean could be calculated. Even though the factor variable could be converted to the numeric type, the assignment of number to each level was random and arbitrary, and the mean could not be taken since it was neither numeric or logical. 
