@@ -6,7 +6,7 @@ output:
   github_document
 ---
 
-First, load the package we need for this assignment.
+First, we load the package needed for this assignment.
 
 ```{r load_package, message = FALSE}
 library(tidyverse)
@@ -16,14 +16,23 @@ library(tidyverse)
 
 First, we load the `penguins` dataset:
 
-```{r}
+```{r import dataset}
 data("penguins", package = "palmerpenguins")
 ```
 
-Next, we describe the characteristics of the `penguins` dataset
+Next, we describe the characteristics of the `penguins` dataset:
 
 * This dataset includes the `r ncol(penguins)` variables for `r nrow(penguins)` penguins
 
 * This dataset consists of descriptive data for `r n_distinct(penguins$species)` different species of penguins, including which island they reside on, year, sex, and information on their size such as body mass, bill length and depth, and flipper length.
 
 * The mean flipper length for the penguins is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)` mm
+
+Now, we make a scatterplot and save it as a pdf:
+
+```{r scatterplot, message = FALSE, warning = FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, colour = species)) + geom_point()
+
+ggsave("penguins_scatterplot.pdf")
+```
+
