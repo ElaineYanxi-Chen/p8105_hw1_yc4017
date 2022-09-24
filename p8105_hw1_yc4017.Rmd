@@ -8,7 +8,7 @@ output:
 
 First, load the package we need for this assignment.
 
-```{r}
+```{r load_package, message = FALSE}
 library(tidyverse)
 ```
 
@@ -20,4 +20,10 @@ First, we load the `penguins` dataset:
 data("penguins", package = "palmerpenguins")
 ```
 
+Next, we describe the characteristics of the `penguins` dataset
 
+* This dataset includes the `r ncol(penguins)` variables for `r nrow(penguins)` penguins
+
+* This dataset consists of descriptive data for `r n_distinct(penguins$species)` different species of penguins, including which island they reside on, year, sex, and information on their size such as body mass, bill length and depth, and flipper length.
+
+* The mean flipper length for the penguins is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)` mm
